@@ -1,5 +1,7 @@
 This is a bash script to increase or decrease the brightness of ones screen using xrandr. 
 
+I made this because changing the backlight intensity on my laptop wasn't working under Lubuntu 17.04.
+
 Note: 'xrandr' changes brightness in software, not hardware.
 
 Brightness is a value between 0 and 1. 0 means completely black.
