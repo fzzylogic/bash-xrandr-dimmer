@@ -5,9 +5,18 @@
 direction=$1
 amount=$2
 brightness=$(xrandr --verbose | awk '/Brightness/ { print $2; exit }')
-echo "Brightness before: " $brightness
 
-if [[ -n "$direction" ]] && [[ -n "$amount" ]] && [[ -n "$brightness" ]]; then
+if ! [[ -n "$direction" ]]; then
+    exit 1
+fi
+
+if [[ "$direction" = 's' ]]; then
+  echo "Current brightness is:" $brightness
+  exit 0
+fi
+
+if [[ -n "$amount" ]] && [[ -n "$brightness" ]]; then
+
   if (( $(echo "$amount > 0.2" | bc -l) )); then
     amount=0.2
   fi
@@ -35,7 +44,14 @@ if [[ -n "$direction" ]] && [[ -n "$amount" ]] && [[ -n "$brightness" ]]; then
   echo "Brightness after: " $newbrightness
 
 else
-    echo "Arguments are 'u n' or 'd n' where u or d = up or down and n is a value from 0.01 to 0.2. Depends on 'xrandr'."
+    echo "Depends on 'xrandr'."
+    echo ""
+    echo "To set brightness:"
+    echo "$ ./brightness.sh u n     # = brightness 'up' by n"
+    echo "$ ./brightness.sh d n     # = brightness 'down' by n"
+    echo "n is a value between 0.01 and 0.2."
+    echo ""
+    echo "$ ./brightness.sh s       # = 'show' brightness for active monitor"
 fi
 
 
