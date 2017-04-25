@@ -13,4 +13,6 @@ Brightness is a value between 0 and 1. 0 means completely black.
 
 Amount of brightness adjustment is constrained between 0.01 and 0.2.
 
+A convenient way to use this is to connect it to whatever hotkeys you use for brightness adjustment.
+
 License: MIT
